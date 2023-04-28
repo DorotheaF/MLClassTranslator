@@ -1,3 +1,3 @@
-import subprocess
+from subprocess import call
 
-rc = subprocess.call("./train_parent.sh")
+rc = call("train_parent.sh", shell=True)

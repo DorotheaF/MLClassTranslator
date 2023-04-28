@@ -11,17 +11,25 @@ import tensorflow as tf
 
 _datasets = {
     'train': [["", ("train_parent.src", "train_parent.trg")]],
-    # 'dev': [["", ("dev_parent.src", "dev_parent.trg")]],
-    }
+    'dev': [["", ("dev_parent.src", "dev_parent.trg")]],
+}
+
 
 @registry.register_problem
 class parentProblem(translate.TranslateProblem):
     @property
-    def vocab_filename(self):
+    def vocab_file(self):
         return "vocab.cseten.wp"
 
+    @property
+    def input_space_id(self):
+        return problem.SpaceID.GENERIC
+
+    @property
+    def target_space_id(self):
+        return problem.SpaceID.DE_TOK
 
     def source_data_files(self, dataset_split):
         train = dataset_split == problem.DatasetSplit.TRAIN
-        return _datasets['train'] #if train #else _datasets['dev']
+        return _datasets['train'] if train else _datasets['dev']
 
