@@ -1,0 +1,23 @@
+PROBLEM=parent_problem
+MODEL=transformer
+HPARAMS=transformer_big_single_gpu
+
+DATA_DIR=t2t_data
+TMP_DIR=t2t_datagen
+TRAIN_DIR=t2t_train/parent/
+CODEBASE=codebase
+
+mkdir -p $DATA_DIR $TMP_DIR $TRAIN_DIR
+
+# Generate data
+python <conda_dir>t2t-datagen --t2t_usr_dir=<project_dir>\codebase --data_dir=<project_dir>\data\<lang> --tmp_dir=<project_dir>\lang\t2t_datagen --problem=parent_problem
+
+# Train
+## python C:\Users\Dorot\miniconda3\envs\finhope\Scripts\t2t-trainer --data_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\ML\MTM19_tutorial\t2t_data --problems=parent_problem--model=transformer --t2t_usr_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\ML\MTM19_tutorial\codebase --hparams_set=transformer_big_single_gpu --output_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\ML\MTM19_tutorial\t2t_train\parent --worker_gpu=1 --keep_checkpoint_max=100 --hparams='batch_size=2400,max_length=100,learning_rate_schedule=rsqrt_decay,optimizer=Adafactor,learning_rate_warmup_steps=16000'
+
+python <conda_dir>\t2t-trainer --data_dir=<project_dir>\<lang> --problem=parent_problem --model=transformer --t2t_usr_dir=<project_dir>\codebase --hparams_set=transformer_big_single_gpu --output_dir=<project_dir>\<lang>\t2t_train\parent
+
+# worker_gpu specifies number of GPUs
+# keep_checkpoint_max will store latest 100 checkpints
+# max_length drops training sentences longer than X (this is useful for increasing batch size)
+
