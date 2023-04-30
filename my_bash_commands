@@ -21,3 +21,15 @@ python <conda_dir>\t2t-trainer --data_dir=<project_dir>\<lang> --problem=parent_
 # keep_checkpoint_max will store latest 100 checkpints
 # max_length drops training sentences longer than X (this is useful for increasing batch size)
 
+
+rc computing
+python /projects/dofr2963/software/anaconda/envs/MLvenv/bin/t2t-datagen --t2t_usr_dir=/projects/dofr2963/MLclass/MLClassTranslator/codebase --data_dir=/projects/dofr2963/MLclass/MLClassTranslator/data/german/t2t_data --tmp_dir=/projects/dofr2963/MLclass/MLClassTranslator/data/german/t2t_datagen --problem=parent_problem
+train:
+python /projects/dofr2963/software/anaconda/envs/MLvenv/bin/t2t-trainer --data_dir=/projects/dofr2963/MLclass/MLClassTranslator/data/german/t2t_data --output_dir=/projects/dofr2963/MLclass/MLClassTranslator/data/german/t2t_train/parent --model=transformer --t2t_usr_dir=/projects/dofr2963/MLclass/MLClassTranslator/codebase --problem=parent_problem --hparams_set=transformer_big_single_gpu --worker_gpu=1 --keep_checkpoint_max=100 --hparams='batch_size=2400,max_length=100,learning_rate_schedule=rsqrt_decay,learning_rate_warmup_steps=16000'
+
+
+dorothea's pc
+python C:\Users\Dorot\miniconda3\envs\finhope\Scripts\t2t-datagen --t2t_usr_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\MLClassTranslator\codebase --data_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\MLClassTranslator\data\german\t2t_data --tmp_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\MLClassTranslator\data\german\t2t_datagen --problem=parent_problem
+python C:\Users\Dorot\miniconda3\envs\finhope\Scripts\t2t-trainer --data_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\MLClassTranslator\data\german\t2t_data --output_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\MLClassTranslator\data\german\t2t_train\parent --model=transformer --t2t_usr_dir=C:\Users\Dorot\OneDrive\College\Graduate\Classes\MLClassTranslator\codebase --problem=parent_problem --hparams_set=transformer_big_single_gpu --worker_gpu=1 --keep_checkpoint_max=100 --hparams="batch_size=2400,max_length=100"
+
+batch_size=2400,learning_rate_schedule=rsqrt_decay,
