@@ -18,7 +18,7 @@ _datasets = {
 @registry.register_problem
 class parentProblem(translate.TranslateProblem):
     @property
-    def vocab_file(self):
+    def vocab_filename(self):
         return "vocab.cseten.wp"
 
     @property
